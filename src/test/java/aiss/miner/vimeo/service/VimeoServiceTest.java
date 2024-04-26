@@ -1,5 +1,6 @@
 package aiss.miner.vimeo.service;
 
+import aiss.miner.vimeo.model.vimeo.VimeoCaption;
 import aiss.miner.vimeo.model.vimeo.VimeoChannel;
 import aiss.miner.vimeo.model.vimeo.VimeoComment;
 import aiss.miner.vimeo.model.vimeo.VimeoVideo;
@@ -22,7 +23,7 @@ class VimeoServiceTest {
     @ParameterizedTest
     @DisplayName("Get Vimeo Channel from id")
     @ValueSource(strings = {"762461"})
-    void testGetVimeoChannel(String channelId) {
+    void getVimeoChannel(String channelId) {
 
         VimeoChannel channel = vimeoService.getVimeoChannels(channelId);
         System.out.println(channel);
@@ -31,7 +32,7 @@ class VimeoServiceTest {
     @ParameterizedTest
     @DisplayName("Get Vimeo Videos from Channel")
     @ValueSource(strings = {"447433"})
-    void testGetVimeoVideos(String channelId) {
+    void getVimeoVideos(String channelId) {
 
         List<VimeoVideo> videos = vimeoService.getVimeoVideos(channelId);
         System.out.println(videos);
@@ -40,9 +41,17 @@ class VimeoServiceTest {
     @ParameterizedTest
     @DisplayName("Get Vimeo Comments from Video")
     @ValueSource(strings = {"411870028"})
-    void testGetVimeoComments(String videoId) {
+    void getVimeoComments(String videoId) {
 
         List<VimeoComment> comments  =vimeoService.getVimeoComments(videoId);
         System.out.println(comments);
+    }
+
+    @ParameterizedTest
+    @DisplayName("Get Vimeo Captions from Video")
+    @ValueSource(strings = {"241543888"})
+    void getVimeoCaptions(String videoId) {
+        List<VimeoCaption> captions  =vimeoService.getVimeoCaptions(videoId);
+        System.out.println(captions);
     }
 }

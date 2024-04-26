@@ -69,6 +69,7 @@ public class VimeoService {
         List<VimeoVideo> videos = vimeoVideosResponse.getVideos();
         for (var video: videos){
             video.setCommentList(getVimeoComments(video.getId(), maxComments));
+            video.setCaptionList(getVimeoCaptions(video.getId()));
         }
 
         return videos;
@@ -90,5 +91,20 @@ public class VimeoService {
         vimeoCommentsResponse = httpResponse.getBody();
 
         return vimeoCommentsResponse.getCommentList();
+    }
+
+    public List<VimeoCaption> getVimeoCaptions(String videoId)
+    {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.set("Authorization", TOKEN);
+
+        HttpEntity<VimeoChannel> httpRequest = new HttpEntity<>(null, httpHeaders);
+        String uri = "https://api.vimeo.com/videos/" + videoId + "/texttracks";
+        ResponseEntity<VimeoCaptionResponse> httpResponse = restTemplate.exchange(uri, HttpMethod.GET, httpRequest, VimeoCaptionResponse.class);
+
+        VimeoCaptionResponse vimeoCommentsResponse = null;
+        vimeoCommentsResponse = httpResponse.getBody();
+
+        return vimeoCommentsResponse.getCaptionList();
     }
 }
