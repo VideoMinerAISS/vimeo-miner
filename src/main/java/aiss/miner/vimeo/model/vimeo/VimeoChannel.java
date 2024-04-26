@@ -32,7 +32,8 @@ public class VimeoChannel {
                 ", description=" + description +
                 ", createdTime=" + createdTime +
                 ", video Count=" + videos.size() +
-                ", first video=" + videos.get(0) +
+                ", first video=" + videos.get(0) + "\n"+
+                ", second video=" + videos.get(1) + "\n"+
                 '}';
     }
 

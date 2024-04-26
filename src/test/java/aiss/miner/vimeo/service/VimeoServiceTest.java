@@ -1,6 +1,7 @@
 package aiss.miner.vimeo.service;
 
 import aiss.miner.vimeo.model.vimeo.VimeoChannel;
+import aiss.miner.vimeo.model.vimeo.VimeoComment;
 import aiss.miner.vimeo.model.vimeo.VimeoVideo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,20 +20,29 @@ class VimeoServiceTest {
     VimeoService vimeoService;
 
     @ParameterizedTest
-    @DisplayName("Get Vimeo Channels")
-    @ValueSource(strings = {"447433"})
-    void testGetVimeoChannel(String id) {
+    @DisplayName("Get Vimeo Channel from id")
+    @ValueSource(strings = {"762461"})
+    void testGetVimeoChannel(String channelId) {
 
-        VimeoChannel channel = vimeoService.getVimeoChannels(id);
+        VimeoChannel channel = vimeoService.getVimeoChannels(channelId);
         System.out.println(channel);
     }
 
     @ParameterizedTest
     @DisplayName("Get Vimeo Videos from Channel")
     @ValueSource(strings = {"447433"})
-    void testGetVimeoVideos(String id) {
+    void testGetVimeoVideos(String channelId) {
 
-        List<VimeoVideo> videos = vimeoService.getVimeoVideos(id);
+        List<VimeoVideo> videos = vimeoService.getVimeoVideos(channelId);
         System.out.println(videos);
+    }
+
+    @ParameterizedTest
+    @DisplayName("Get Vimeo Comments from Video")
+    @ValueSource(strings = {"411870028"})
+    void testGetVimeoComments(String videoId) {
+
+        List<VimeoComment> comments  =vimeoService.getVimeoComments(videoId);
+        System.out.println(comments);
     }
 }

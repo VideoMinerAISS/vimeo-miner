@@ -21,17 +21,14 @@ public class VimeoVideo {
         id = null;
     }
 
-    @Override
-    public String toString() {
-        return "VimeoVideo{" +
-                "id='" + getId() + '\'' +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", releasedTime='" + releasedTime + '\'' +
-                ", captionList=" + captionList +
-                ", commentList=" + commentList +
-                '}';
-    }
+    @JsonProperty("created_time")
+    private String releasedTime;
+
+    List<VimeoCaption> captionList;
+    List<VimeoComment> commentList;
+
+
+
 
 
 
@@ -49,7 +46,6 @@ public class VimeoVideo {
 
     public void setId(String id) {
         this.id = id;
-        this.uri = "/videos/"  + id;
     }
     public String getName() {
         return name;
@@ -91,9 +87,16 @@ public class VimeoVideo {
         this.commentList = commentList;
     }
 
-    @JsonProperty("created_time")
-    private String releasedTime;
 
-    List<VimeoCaption> captionList;
-    List<VimeoComment> commentList;
+    @Override
+    public String toString() {
+        return "VimeoVideo{" +
+                "id='" + getId() + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", releasedTime='" + releasedTime + '\'' +
+                ", captionList=" + captionList +
+                ", commentList=" + commentList +
+                '}';
+    }
 }
