@@ -1,5 +1,6 @@
 package aiss.miner.vimeo.model.video;
 
+import aiss.miner.vimeo.model.vimeo.VimeoChannel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -7,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Juan C. Alonso
@@ -90,5 +92,15 @@ public class Channel {
                 ", createdTime='" + createdTime + '\'' +
                 ", videos=" + videos +
                 '}';
+    }
+
+    public Channel(VimeoChannel vimeoChannel)
+    {
+        this.id = vimeoChannel.getId();
+        this.name = vimeoChannel.getName();
+        this.createdTime = vimeoChannel.getCreatedTime();
+        this.description = vimeoChannel.getCreatedTime();
+        this.videos = vimeoChannel.getVideos().stream().
+                map(Video::new).collect(Collectors.toList());
     }
 }

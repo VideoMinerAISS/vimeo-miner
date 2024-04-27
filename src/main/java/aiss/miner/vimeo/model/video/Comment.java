@@ -1,5 +1,7 @@
 package aiss.miner.vimeo.model.video;
 
+import aiss.miner.vimeo.model.vimeo.VimeoCaption;
+import aiss.miner.vimeo.model.vimeo.VimeoComment;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -67,5 +69,13 @@ public class Comment {
                 ", createdOn='" + createdOn + '\'' +
                 ", author=" + author +
                 '}';
+    }
+
+    public  Comment(VimeoComment vimeoComment)
+    {
+        this.id = vimeoComment.getId();
+        this.author = new User(vimeoComment.getUser());
+        this.text = vimeoComment.getText();
+        this.createdOn = vimeoComment.getCreatedOn();
     }
 }

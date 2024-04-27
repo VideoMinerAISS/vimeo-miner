@@ -1,11 +1,13 @@
 package aiss.miner.vimeo.model.video;
 
+import aiss.miner.vimeo.model.vimeo.VimeoVideo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Juan C. Alonso
@@ -100,5 +102,18 @@ public class Video {
                 ", comments=" + comments +
                 ", captions=" + captions +
                 '}';
+    }
+
+
+    public Video(VimeoVideo vimeoVideo)
+    {
+        this.id = vimeoVideo.getId();
+        this.name = vimeoVideo.getName();
+        this.description = vimeoVideo.getDescription();
+        this.releaseTime = vimeoVideo.getReleasedTime();
+        this.captions = vimeoVideo.getCaptionList().stream()
+                .map(Caption::new).collect(Collectors.toList());
+        this.comments = vimeoVideo.getCommentList().stream()
+                .map(Comment::new).collect(Collectors.toList());
     }
 }
