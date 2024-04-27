@@ -26,6 +26,7 @@ class VimeoServiceTest {
     void getVimeoChannel(String channelId) {
 
         VimeoChannel channel = vimeoService.getVimeoChannels(channelId);
+        assertNotEquals(channel,null, "Channels is null");
         System.out.println(channel);
     }
 
@@ -35,6 +36,7 @@ class VimeoServiceTest {
     void getVimeoVideos(String channelId) {
 
         List<VimeoVideo> videos = vimeoService.getVimeoVideos(channelId);
+        assertFalse(videos.isEmpty(), "Videos are empty");
         System.out.println(videos);
     }
 
@@ -43,7 +45,8 @@ class VimeoServiceTest {
     @ValueSource(strings = {"411870028"})
     void getVimeoComments(String videoId) {
 
-        List<VimeoComment> comments  =vimeoService.getVimeoComments(videoId);
+        List<VimeoComment> comments  = vimeoService.getVimeoComments(videoId);
+        assertFalse(comments.isEmpty(), "Comments are empty");
         System.out.println(comments);
     }
 
@@ -51,7 +54,8 @@ class VimeoServiceTest {
     @DisplayName("Get Vimeo Captions from Video")
     @ValueSource(strings = {"241543888"})
     void getVimeoCaptions(String videoId) {
-        List<VimeoCaption> captions  =vimeoService.getVimeoCaptions(videoId);
+        List<VimeoCaption> captions  = vimeoService.getVimeoCaptions(videoId);
+        assertFalse(captions.isEmpty(), "Captions are empty");
         System.out.println(captions);
     }
 }

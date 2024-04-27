@@ -1,5 +1,6 @@
 package aiss.miner.vimeo.model.video;
 
+import aiss.miner.vimeo.model.vimeo.VimeoCaption;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
@@ -55,6 +56,13 @@ public class Caption {
         this.id = id;
         this.name = name;
         this.language = language;
+    }
+
+    public Caption(VimeoCaption vimeoCaption)
+    {
+        this.id = vimeoCaption.getId();
+        this.name = vimeoCaption.getName();
+        this.language = vimeoCaption.getLanguage();
     }
 
     @Override

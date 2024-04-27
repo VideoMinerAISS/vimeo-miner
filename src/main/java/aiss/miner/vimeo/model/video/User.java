@@ -1,5 +1,6 @@
 package aiss.miner.vimeo.model.video;
 
+import aiss.miner.vimeo.model.vimeo.VimeoUser;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
@@ -62,6 +63,15 @@ public class User {
         this.picture_link = picture_link;
     }
 
+
+    public User(VimeoUser vimeoUser)
+    {
+        this.id = Long.parseLong(vimeoUser.getId());
+        this.name = vimeoUser.getName();
+        this.user_link = vimeoUser.getUserLink();
+        this.picture_link = vimeoUser.getPictureLink();
+
+    }
     @Override
     public String toString() {
         return "User{" +
