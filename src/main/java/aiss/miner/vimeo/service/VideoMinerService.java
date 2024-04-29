@@ -17,7 +17,7 @@ public class VideoMinerService {
     public void createChannel(Channel channel)
     {
         HttpEntity<Channel> request = new HttpEntity<>(channel, null);
-        String uri = baseURI + "/channels";
+        String uri = baseURI + "/videominer/channels";
 
         ResponseEntity<Channel> response = restTemplate.exchange(uri, HttpMethod.POST, request, Channel.class);
 
