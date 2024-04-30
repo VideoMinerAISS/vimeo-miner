@@ -78,4 +78,6 @@ public class Comment {
         this.text = vimeoComment.getText();
         this.createdOn = vimeoComment.getCreatedOn();
     }
+
+     public  Comment(){}
 }

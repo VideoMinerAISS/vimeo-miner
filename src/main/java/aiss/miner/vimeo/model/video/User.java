@@ -72,6 +72,7 @@ public class User {
         this.picture_link = vimeoUser.getPictureLink();
 
     }
+    public  User(){}
     @Override
     public String toString() {
         return "User{" +

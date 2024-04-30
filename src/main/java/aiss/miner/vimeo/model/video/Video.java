@@ -116,4 +116,6 @@ public class Video {
         this.comments = vimeoVideo.getCommentList().stream()
                 .map(Comment::new).collect(Collectors.toList());
     }
+
+    public Video(){}
 }

@@ -41,7 +41,7 @@ public class VimeoService {
         channel = httpResponse.getBody();
         channel.setId(channelId);
 
-        channel.setVideos(getVimeoVideos(channelId));
+        channel.setVideos(getVimeoVideos(channelId, maxVideos, maxComments));
 
         return channel;
     }
