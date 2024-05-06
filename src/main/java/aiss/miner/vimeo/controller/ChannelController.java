@@ -9,6 +9,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -38,10 +40,10 @@ public class ChannelController {
     @GetMapping("/{id}")
     public Channel findOne(@Parameter(description = "id of a vimeo channel") @PathVariable String id,
                            @Parameter(description = "maximum number of videos")
-                           @RequestParam(value="maxVideos", defaultValue ="10") String maxVideos,
+                           @RequestParam(value="maxVideos", defaultValue ="10") @Min(0) @Max(20) String maxVideos,
                            @Parameter(description = "maximum number of comments")
-                           @RequestParam(value="maxComments", defaultValue ="10") String maxComments
-                           ) {
+                           @RequestParam(value="maxComments", defaultValue ="10") @Min(0) @Max(20) String maxComments
+    ) {
 
         return vimeoTranslatedService.getVimeoChannels(id, Integer.parseInt(maxVideos), Integer.parseInt(maxComments));
     }
@@ -63,9 +65,9 @@ public class ChannelController {
     @ResponseStatus(HttpStatus.CREATED)
     public Channel postOne(@Parameter(description = "id of a vimeo channel") @PathVariable String id,
                            @Parameter(description = "maximum number of videos")
-                           @RequestParam(value="maxVideos", defaultValue ="10") String maxVideos,
+                           @RequestParam(value="maxVideos", defaultValue ="10") @Min(0) @Max(20) String maxVideos,
                            @Parameter(description = "maximum number of comments")
-                           @RequestParam(value="maxComments", defaultValue ="10") String maxComments
+                           @RequestParam(value="maxComments", defaultValue ="10") @Min(0) @Max(20) String maxComments
     ) {
 
         Channel channel = vimeoTranslatedService.getVimeoChannels(id,Integer.parseInt(maxVideos), Integer.parseInt(maxComments));
