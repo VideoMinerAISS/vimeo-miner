@@ -10,6 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 
@@ -29,6 +30,56 @@ class VimeoServiceTest {
         assertNotEquals(channel,null, "Channels is null");
         System.out.println(channel);
     }
+
+    @ParameterizedTest()
+    @DisplayName("Vimeo Channel not Found")
+    @ValueSource(strings = {"1"})
+    void getNonExistingVimeoChannel(String channelId) {
+        Exception exception = assertThrows(HttpClientErrorException.class, () -> {
+            vimeoService.getVimeoChannels(channelId);
+        });
+
+        String expectedMessage = "404 Not Found";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+
+
+
+    }
+
+//    @ParameterizedTest
+//    @DisplayName("Vimeo Channel forbidden")
+//    @ValueSource(strings = {"1"})
+//    void getForbiddenVimeoChannel(String channelId) {
+//        Exception exception = assertThrows(HttpClientErrorException.class, () -> {
+//        vimeoService.getVimeoChannels(channelId);
+//        });
+//        /
+//        String expectedMessage = "403 Forbidden";
+//        String actualMessage = exception.getMessage();
+//
+//        assertTrue(actualMessage.contains(expectedMessage));
+//    }
+
+
+    @ParameterizedTest
+    @DisplayName("Vimeo Channel too many requests")
+    @ValueSource(strings = {"762461"})
+    void getInfiniteVimeoChannels(String channelId) {
+
+        //This test only works when using the free access of the API
+        vimeoService.getVimeoChannels(channelId);
+        Exception exception = assertThrows(HttpClientErrorException.class, () -> {
+            vimeoService.getVimeoChannels(channelId);
+        });
+
+        String expectedMessage = "429 Too Many Requests";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
 
     @ParameterizedTest
     @DisplayName("Get Vimeo Videos from Channel")
