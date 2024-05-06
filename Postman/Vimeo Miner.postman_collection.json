@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "ac0c178d-1ebd-445d-8902-77b7f7febbe1",
+		"name": "Vimeo Miner",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33739456"
+	},
+	"item": [
+		{
+			"name": "Vimeo video by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/channels/762461?maxVideos=2&maxComments=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"channels",
+						"762461"
+					],
+					"query": [
+						{
+							"key": "maxVideos",
+							"value": "2"
+						},
+						{
+							"key": "maxComments",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vimeo video by id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/channels/762461?maxVideos=2&maxComments=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"channels",
+						"762461"
+					],
+					"query": [
+						{
+							"key": "maxVideos",
+							"value": "2"
+						},
+						{
+							"key": "maxComments",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
