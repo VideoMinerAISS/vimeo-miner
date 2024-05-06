@@ -16,10 +16,10 @@ public class VideoMinerService {
     String baseURI = "http://localhost:8080";
     public void createChannel(Channel channel)
     {
-        HttpEntity<Channel> request = new HttpEntity<>(channel, null);
+        HttpEntity<Channel> body = new HttpEntity<>(channel, null);
         String uri = baseURI + "/videominer/channels";
 
-        ResponseEntity<Channel> response = restTemplate.exchange(uri, HttpMethod.POST, request, Channel.class);
+        ResponseEntity<Channel> response = restTemplate.exchange(uri, HttpMethod.POST, body, Channel.class);
 
         System.out.println(response.getBody());
     }
